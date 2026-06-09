@@ -1,0 +1,39 @@
+---
+layout: compress
+---
+
+{% include origin-type.html %}
+{% include lang.html %}
+
+{% if site.theme_mode %}
+  {% capture prefer_mode %}data-mode="{{ site.theme_mode }}"{% endcapture %}
+{% endif %}
+
+<!doctype html>
+<html lang="{{ page.lang | default: site.lang }}" {{ prefer_mode }}>
+  {% include head.html %}
+
+  <body class="resume-page">
+    <iframe
+      class="resume-embed"
+      src="{{ page.pdf | default: '/assets/files/resume.pdf' | relative_url }}"
+      title="{{ page.title | default: 'Resume' }}"
+    ></iframe>
+  </body>
+</html>
+
+<style>
+  .resume-page {
+    margin: 0;
+    overflow: hidden;
+    background: var(--main-bg);
+  }
+
+  .resume-embed {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+</style>
